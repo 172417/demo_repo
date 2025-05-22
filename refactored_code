@@ -1,85 +1,13 @@
-Here is the equivalent Go code for the given PHP contact form processor:
+Here is the equivalent Go code for the given Java code:
 
 ```go
 package main
 
-import (
-	"fmt"
-	"html"
-	"net/http"
-	"strings"
-)
-
-func validateInput(data string) string {
-	data = strings.TrimSpace(data)
-	data = html.EscapeString(data)
-	return data
-}
+import "fmt"
 
 func main() {
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		if r.Method == http.MethodPost {
-			r.ParseForm()
-
-			name := r.FormValue("name")
-			email := r.FormValue("email")
-			message := r.FormValue("message")
-			errors := []string{}
-
-			if name == "" {
-				errors = append(errors, "Name is required")
-			} else {
-				name = validateInput(name)
-			}
-
-			if email == "" {
-				errors = append(errors, "Email is required")
-			} else {
-				email = validateInput(email)
-				if !strings.Contains(email, "@") {
-					errors = append(errors, "Invalid email format")
-				}
-			}
-
-			if message == "" {
-				errors = append(errors, "Message is required")
-			} else {
-				message = validateInput(message)
-			}
-
-			if len(errors) == 0 {
-				fmt.Fprintf(w, "<h2>Thank you, %s!</h2>\n", name)
-				fmt.Fprintf(w, "<p>We have received your message:</p>\n")
-				fmt.Fprintf(w, "<blockquote>%s</blockquote>\n", message)
-			} else {
-				fmt.Fprintf(w, "<h3>Please correct the following errors:</h3><ul>\n")
-				for _, err := range errors {
-					fmt.Fprintf(w, "<li>%s</li>\n", err)
-				}
-				fmt.Fprintf(w, "</ul>\n")
-			}
-		}
-
-		fmt.Fprintf(w, `
-			<!-- Basic HTML Form -->
-			<form method="post" action="%s">
-				Name: <input type="text" name="name"><br><br>
-				Email: <input type="text" name="email"><br><br>
-				Message: <textarea name="message"></textarea><br><br>
-				<input type="submit" value="Submit">
-			</form>
-		`, r.URL.Path)
-	})
-
-	http.ListenAndServe(":8080", nil)
+    fmt.Println("Hello, World!")
 }
 ```
 
-In this Go code:
-- We use the `net/http` package to handle HTTP requests and responses.
-- The `validateInput` function is used to sanitize user input.
-- The form processing logic is similar to the PHP code, checking for required fields and validating email format.
-- The HTML form is rendered within the Go code using `fmt.Fprintf` to write the response.
-- The server listens on port 8080 using `http.ListenAndServe`.
-
-You can run this Go code to create a web server that processes the contact form requests.
+In Go, the `main` function is the entry point of the program, similar to Java. The `fmt` package is used for formatted I/O, and `fmt.Println` is used to print the "Hello, World!" message to the console.
