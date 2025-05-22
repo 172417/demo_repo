@@ -1,13 +1,9 @@
-Here is the equivalent Go code for the given Java code:
+```python
+class HelloWorld:
+    @staticmethod
+    def main(args):
+        print("Hello, World!")
 
-```go
-package main
-
-import "fmt"
-
-func main() {
-    fmt.Println("Hello, World!")
-}
+# To run the main method
+HelloWorld.main([])
 ```
-
-In Go, the `main` function is the entry point of the program, similar to Java. The `fmt` package is used for formatted I/O, and `fmt.Println` is used to print the "Hello, World!" message to the console.
