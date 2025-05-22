@@ -1,4 +1,4 @@
-Here is the equivalent Go code for the given Java code:
+Here is the equivalent code in Go:
 
 ```go
 package main
@@ -10,4 +10,4 @@ func main() {
 }
 ```
 
-In Go, the `main` function is the entry point of the program, similar to Java. The `fmt` package is used for formatted I/O, and `fmt.Println` is used to print the "Hello, World!" message to the console.
+In Go, we use the `fmt` package to handle input and output operations. The `main` function is the entry point of the program, similar to Java.
