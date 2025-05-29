@@ -4,5 +4,5 @@ class HelloWorld:
     def main(args):
         print("Hello, World!")
 
-# Code in Python 3
+# Code in Python
 ```
