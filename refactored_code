@@ -1,42 +1,24 @@
-Here is the equivalent code in Go:
+```python
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Python Demo</title>
+</head>
+<body>
 
-```go
-package main
+{% if request.method == 'POST' and request.form['name'] %}
+    {% set name = request.form['name'] %}
+    <h2>Hello, {{ name }}!</h2>
+    <p>Current date and time is: {{ datetime.now().strftime('%Y-%m-%d %H:%M:%S') }}</p>
+{% else %}
+    <h1>Welcome to the Python Demo!</h1>
+    <form method="post" action="{{ request.path }}">
+        <label for="name">Enter your name:</label><br><br>
+        <input type="text" id="name" name="name" required><br><br>
+        <input type="submit" value="Submit">
+    </form>
+{% endif %}
 
-import (
-	"fmt"
-	"html"
-	"net/http"
-	"time"
-)
-
-func handler(w http.ResponseWriter, r *http.Request) {
-	if r.Method == http.MethodPost && r.FormValue("name") != "" {
-		name := html.EscapeString(r.FormValue("name"))
-		fmt.Fprintf(w, "<h2>Hello, %s!</h2>", name)
-		fmt.Fprintf(w, "<p>Current date and time is: %s</p>", time.Now().Format("2006-01-02 15:04:05"))
-	} else {
-		fmt.Fprintf(w, "<h1>Welcome to the Go Demo!</h1>")
-		fmt.Fprintf(w, `<form method="post" action="%s">
-			<label for="name">Enter your name:</label><br><br>
-			<input type="text" id="name" name="name" required><br><br>
-			<input type="submit" value="Submit">
-		</form>`, html.EscapeString(r.URL.Path))
-	}
-}
-
-func main() {
-	http.HandleFunc("/", handler)
-	http.ListenAndServe(":8080", nil)
-}
+</body>
+</html>
 ```
-
-In this Go code:
-
-- We use the `net/http` package to handle HTTP requests and responses.
-- We define a handler function that checks if the request method is POST and if the "name" field is not empty to display a personalized message with the current date and time. Otherwise, it displays a welcome message and a form to enter the name.
-- We use `html.EscapeString` to sanitize user input and prevent XSS attacks.
-- We use `time.Now().Format` to get the current date and time in the specified format.
-- We register the handler function with `http.HandleFunc` and start the HTTP server with `http.ListenAndServe` on port 8080.
-
-You can run this Go code and access it in a web browser to see the same functionality as the original PHP code.
